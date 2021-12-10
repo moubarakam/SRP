@@ -15,28 +15,31 @@ class News {
 
 class Generate{
 
-    html() {
+    // constructor(title, text) {
+    //     this.new  = new News(title, text);
+    // }
+
+    html(title, text) {
         return `
             <div class="news">
-                <h1>${this.title}</h1>
-                <p>${this.text}</p>
+                <h1>${title}</h1>
+                <p>${text}</p>
             </div>
         `
     }
 
-    json() {
+    json(title, text) {
         return JSON.stringify({
-            title: this.title,
-            text: this.text,
-            modified: this.modified
+            title: title,
+            text: text
         }, null, 2)
     }
 
-    xml() {
+    xml(title, text) {
         return `
             <news>
-                <title>${this.title}</title>
-                <text>${this.text}</text>
+                <title>${title}</title>
+                <text>${text}</text>
             </news>
         `
     }
@@ -44,10 +47,12 @@ class Generate{
 }
 
 const news = new News('Un super titre', 'Une super description');
-console.log(news.html());
-console.log(news.json());
-console.log(news.xml());
+const generate = new Generate();
+
+console.log(generate.html(news.title, news.text));
+console.log(generate.json(news.title, news.text));
+console.log(generate.xml(news.title, news.text));
 news.update('Une description encore mieux !');
-console.log(news.html());
-console.log(news.json());
-console.log(news.xml());
+console.log(generate.html(news.title, news.text));
+console.log(generate.json(news.title, news.text));
+console.log(generate.xml(news.title, news.text));
